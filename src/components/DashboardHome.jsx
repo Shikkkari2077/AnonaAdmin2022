@@ -34,7 +34,7 @@ const DashboardHome = () => {
 
      
         <div className="productionReport">
-         {ReportData?<div>
+         {ReportData&&ReportData.length>0?<div>
          <table>
               <thead>
                 <tr>
