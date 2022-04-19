@@ -32,8 +32,9 @@ const DashboardHome = () => {
           <input value={date} onChange={(e)=>setDate(e.target.value)} className='DateInput' type="date" />
         </div>
 
+     
         <div className="productionReport">
-         <div>
+         {ReportData?<div>
          <table>
               <thead>
                 <tr>
@@ -49,7 +50,7 @@ const DashboardHome = () => {
                 </tr>
               </thead>
               <tbody>
-                {ReportData?ReportData.map((data,index)=>(
+                {ReportData.map((data,index)=>(
                     <tr>
                     <td>{data.name}</td>
                     <td>
@@ -85,7 +86,7 @@ const DashboardHome = () => {
                     <td></td>
                     <td>{data.order.length}</td>
                     </tr>
-                )):null}
+                ))}
 
                 <tr>
                   <td colSpan={8}>
@@ -115,7 +116,7 @@ const DashboardHome = () => {
 
               </tbody>
           </table>
-         </div>
+         </div>:<h3>Please Select A Date!</h3>}
         </div>
        
     </div>
