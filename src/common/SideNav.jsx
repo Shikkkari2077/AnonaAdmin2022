@@ -19,7 +19,7 @@ const SideNav = () => {
     if(location.pathname.includes('/logs')){
         setNavActive(2)
     }
-    if(location.pathname.includes('/banners')){
+    if(location.pathname.includes('/controlPanel')){
         setNavActive(3)
     }
     if(location.pathname.includes('/sponsor')){
@@ -42,7 +42,13 @@ const SideNav = () => {
 
         <Link  to="/logs" className="navLink" onClick={()=>setNavActive(2)}>
           <li className={navActive==2?"Link LinkActive":"Link"}>
-            <p><span class="material-icons-outlined">dvr</span>User Logs</p>
+            <p><span class="material-icons-outlined">dvr</span>Logs Data</p>
+          </li>
+        </Link>
+
+        <Link  to="/controlPanel" className="navLink" onClick={()=>setNavActive(3)}>
+          <li className={navActive==3?"Link LinkActive":"Link"}>
+            <p><span class="material-icons-outlined">settings</span>Control Panel</p>
           </li>
         </Link>
 

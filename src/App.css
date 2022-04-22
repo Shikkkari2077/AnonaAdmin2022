@@ -35,7 +35,7 @@
     font-size: 1rem;
     font-weight: 500;
     color: #393e46;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     padding: 0.5rem 0;
     padding-left: 1rem;
     /* margin-bottom:0.2rem ; */
@@ -43,6 +43,7 @@
     border-right: 4px solid transparent;
     transition: 300ms all ease;
     /* border: 1px solid black; */
+    
 }
 .navLink .Link:hover{
     /* padding-left: 1.3rem; */
@@ -64,10 +65,11 @@
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-    padding-left: 2rem !important;
+    padding-left: 1.5rem !important;
     color: black !important;
     /* border-left: 4px solid rgb(39, 176, 255) !important; */
     border-right: 4px solid #7c73e6 !important;
+   
 }
 
 .subnavLINKS{

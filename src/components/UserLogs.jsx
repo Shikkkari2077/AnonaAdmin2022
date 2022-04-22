@@ -153,12 +153,12 @@ const UserLogs = () => {
     <div>
         <div className="breadcrumb">
         <span>
-            <Link to='/logs'><span class="material-icons-outlined">dvr</span>User Logs</Link>/
+            <Link to='/logs'><span class="material-icons-outlined">dvr</span>Email - SMS Logs</Link>/
             <Link to='/'><span class="material-icons-outlined">home</span>Home</Link>
         </span>
         </div>
         <div className="Header">
-          <h2><span class="material-icons-outlined">dvr</span>User Logs</h2>
+          <h2><span class="material-icons-outlined">dvr</span>Email / SMS Logs</h2>
           <div>
             <select className='Channel' value={Channel} onChange={(e)=>setChannel(e.target.value)} id="">
               <option value="email">Email</option>

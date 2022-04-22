@@ -34,7 +34,7 @@ const DashboardHome = () => {
 
      
         <div className="productionReport">
-         {ReportData&&ReportData.length>0?<div>
+         {ReportData&&ReportData!==undefined?<div>
          <table>
               <thead>
                 <tr>
@@ -50,7 +50,7 @@ const DashboardHome = () => {
                 </tr>
               </thead>
               <tbody>
-                {ReportData.map((data,index)=>(
+                {ReportData.data.map((data,index)=>(
                     <tr>
                     <td>{data.name}</td>
                     <td>
@@ -92,7 +92,7 @@ const DashboardHome = () => {
                   <td colSpan={8}>
                    <b> TOTAL WITH NOTES AND ALLERGIES</b>
                   </td>
-                  <td><b>54</b></td>
+                  <td><b>{ReportData.allergic}</b></td>
                 </tr>
 
                 <tr>
@@ -100,7 +100,7 @@ const DashboardHome = () => {
                   <b> TOTAL NORMAL</b>
                   </td>
                   <td>
-                  <b>45</b>
+                  <b>{ReportData.normal}</b>
                   </td>
                 </tr>
                 
@@ -110,7 +110,7 @@ const DashboardHome = () => {
                     <b>TOTAL ITEMS</b>
                   </td>
                   <td>
-                  <b>89</b>
+                  <b>{ReportData.allergic + ReportData.normal}</b>
                   </td>
                 </tr>
 
