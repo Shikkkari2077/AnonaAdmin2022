@@ -15,13 +15,18 @@ const UserLogs = () => {
   const [Channel, setChannel] = useState('email')
   const [LOGS_DATA, setLOGS_DATA] = useState(false)
 
-  useEffect(() => {
+
+  const OnSearch =()=>{
     if(date&&Channel=='email'){
       dispatch(GetUserEmailLOGS(date))
     }else if(date&&Channel=='sms'){
       dispatch(GetUserSMSLOGS(date))
+    }else{
+      toast.warning("Please Select A Date!", {
+        position: toast.POSITION.TOP_RIGHT
+    });
     }
-  }, [date,Channel])
+  }
 
   useEffect(() => {
    if(EmailLOGS){
@@ -159,12 +164,13 @@ const UserLogs = () => {
         </div>
         <div className="Header">
           <h2><span class="material-icons-outlined">dvr</span>Email / SMS Logs</h2>
-          <div>
+          <div className='INPUTS'>
             <select className='Channel' value={Channel} onChange={(e)=>setChannel(e.target.value)} id="">
               <option value="email">Email</option>
               <option value="sms">SMS</option>
             </select>
             <input value={date} onChange={(e)=>setDate(e.target.value)} className='DateInput' type="date" />
+            <button onClick={OnSearch}><span class="material-icons-outlined">search</span></button>
           </div>
         </div>
 

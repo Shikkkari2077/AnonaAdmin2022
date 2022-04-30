@@ -3,6 +3,7 @@ import {
   SET_EMAIL_LOGS,
   SET_SMS_LOGS,
   SET_STATUS_DATA,
+  SET_REFRESH,
 } from './Types'
 
 import Constant from '../Constant'
@@ -43,15 +44,36 @@ axios
 
 
 export const GetMealsReport = (data) => (dispatch)=>{
+  dispatch({
+    type:SET_REFRESH,
+    payload:true
+  })
 
     axios
       .get(Constant.getAPI() + `/productionReport/report?date=${data}`)
       .then((res) => {
-            if(res.data){
                 dispatch({
-                    type:SET_REPORT_DATA,
-                    payload:res.data
+                  type:SET_REPORT_DATA,
+                  payload:res.data
+              })
+            if(res.data.data.length>0){
+                toast.success("Reports Fetched Successfully!", {
+                  position: toast.POSITION.TOP_RIGHT
+              });
+        
+                dispatch({
+                  type:SET_REFRESH,
+                  payload:false
                 })
+            }else{
+              toast.error("No Records Found Sorry!", {
+                position: toast.POSITION.TOP_RIGHT
+              });
+
+              dispatch({
+                type:SET_REFRESH,
+                payload:false
+              })
             }
       })
       .catch((err) => {
@@ -60,15 +82,36 @@ export const GetMealsReport = (data) => (dispatch)=>{
   }
 
   export const GetUserEmailLOGS = (data) => (dispatch)=>{
-
+    dispatch({
+      type:SET_REFRESH,
+      payload:true
+    })
     axios
       .get(Constant.getAPI() + `/productMaster/get-logs/email?date=${data}`)
       .then((res) => {
-            if(res.data){
+           
+            if(res.data.length>0){
+                toast.success("Emails Fetched Successfully!", {
+                  position: toast.POSITION.TOP_RIGHT
+                });
+
                 dispatch({
                     type:SET_EMAIL_LOGS,
                     payload:res.data.data
                 })
+                dispatch({
+                  type:SET_REFRESH,
+                  payload:false
+                })
+            }else{
+              toast.error("No Records Found Sorry!", {
+                position: toast.POSITION.TOP_RIGHT
+              });
+
+              dispatch({
+                type:SET_REFRESH,
+                payload:false
+              })
             }
       })
       .catch((err) => {
@@ -77,15 +120,35 @@ export const GetMealsReport = (data) => (dispatch)=>{
   }
 
   export const GetUserSMSLOGS = (data) => (dispatch)=>{
-
+    dispatch({
+      type:SET_REFRESH,
+      payload:true
+    })
     axios
       .get(Constant.getAPI() + `/productMaster/get-logs/sms?date=${data}`)
       .then((res) => {
-            if(res.data){
+      
+            if(res.data.length>0){
+              toast.success("SMS Fetched Successfully!", {
+                position: toast.POSITION.TOP_RIGHT
+              });
                 dispatch({
                     type:SET_SMS_LOGS,
                     payload:res.data.data
                 })
+                dispatch({
+                  type:SET_REFRESH,
+                  payload:false
+                })
+            }else{
+              toast.error("No Records Found Sorry!", {
+                position: toast.POSITION.TOP_RIGHT
+              });
+
+              dispatch({
+                type:SET_REFRESH,
+                payload:false
+              })
             }
       })
       .catch((err) => {

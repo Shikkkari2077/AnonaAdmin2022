@@ -11,11 +11,15 @@ const DashboardHome = () => {
 
   const [date, setDate] = useState('')
 
-  useEffect(() => {
+  const OnSearch =()=>{
     if(date){
       dispatch(GetMealsReport(date))
+    }else{
+      toast.warning("Please Select A Date!", {
+        position: toast.POSITION.TOP_RIGHT
+    });
     }
-  }, [date])
+  }
   
   console.log('ReportData',ReportData);
 
@@ -29,7 +33,10 @@ const DashboardHome = () => {
         </div>
         <div className="Header">
           <h2><span class="material-icons-outlined">summarize</span>Production Reports</h2>
-          <input value={date} onChange={(e)=>setDate(e.target.value)} className='DateInput' type="date" />
+          <div className='INPUTS'>
+            <input value={date} onChange={(e)=>setDate(e.target.value)} className='DateInput' type="date" />
+            <button onClick={OnSearch}><span class="material-icons-outlined">search</span></button>
+          </div>
         </div>
 
      
@@ -42,7 +49,7 @@ const DashboardHome = () => {
                   <th>Order ID</th>
                   <th>Dislikes</th>
                   <th>Allergy</th>
-                  <th>Ingredients</th>
+                  <th>Allergy Ingredients</th>
                   <th>Dislikes Count</th>
                   <th>Dislikes Total</th>
                   <th>Allergy Total</th>
@@ -51,48 +58,57 @@ const DashboardHome = () => {
               </thead>
               <tbody>
                 {ReportData.data.map((data,index)=>(
-                    <tr>
-                    <td>{data.name}</td>
-                    <td>
-                      <div>
-                        {data.order.map(ordr=>(
-                          <span>{ordr},</span>
-                        ))}
-                      </div>
-                    </td>
-                    <td>
-                      <div>
-                        {data.dislikes.map(dislike=>(
-                          <span>{dislike.name},</span>
-                        ))}
-                      </div>
-                    </td>
-                    <td>
-                      <div>
-                        {data.allergic_to.map(allergy=>(
-                          <span>{allergy.allergy[0]},</span>
-                        ))}
-                      </div>
-                    </td>
-                    <td>
-                      <div>
-                        {data.ingredients.map(ingredient=>(
-                          <span>{ingredient},</span>
-                        ))}
-                      </div>
-                    </td>
-                    <td>{data.dislikes.length}</td>
-                    <td></td>
-                    <td></td>
-                    <td>{data.order.length}</td>
-                    </tr>
+                    <>
+                        {data.dislikes.length>0?data.dislikes.map((subData,i)=>(
+                        
+                          <tr>
+                            <td style={i==data.dislikes.length-1?{borderBottom:'2px solid #000'}:null}>
+                              {data.name}
+                            </td>
+                            <td style={i==data.dislikes.length-1?{borderBottom:'2px solid #000'}:null}>
+                              {subData.order}
+                            </td>
+                            <td style={i==data.dislikes.length-1?{borderBottom:'2px solid #000'}:null}>
+                              {subData.name}
+                            </td>
+                            <td style={i==data.dislikes.length-1?{borderBottom:'2px solid #000'}:null}>
+                              {subData.allergy!==undefined?subData.allergy.map(allergy=>(<>{allergy}, </>)):null}
+                            </td>
+                            <td style={i==data.dislikes.length-1?{borderBottom:'2px solid #000'}:null}>
+                              {subData.allergy_ingredients!==undefined?subData.allergy_ingredients.map(allergyIng=>(<>{allergyIng}, </>)):null}
+                            </td>
+                            <td style={i==data.dislikes.length-1?{borderBottom:'2px solid #000'}:null}>
+                              {subData.dislikes_count}
+                            </td>
+                            <td style={i==data.dislikes.length-1?{borderBottom:'2px solid #000'}:null}></td>
+                            <td style={i==data.dislikes.length-1?{borderBottom:'2px solid #000'}:null}></td>
+                            <td style={i==data.dislikes.length-1?{borderBottom:'2px solid #000'}:null}>
+                              {subData.quantity}
+                            </td>
+                          </tr>
+                         
+                        )):
+                        // <tr>
+                        //     <td style={{borderBottom:'2px solid #000'}}>{data.name}</td>
+                        //     <td style={{borderBottom:'2px solid #000'}}>{data.normal.map(normal=>(<>{normal}, </>))}</td>
+                        //     <td style={{borderBottom:'2px solid #000'}}></td>
+                        //     <td style={{borderBottom:'2px solid #000'}}></td>
+                        //     <td style={{borderBottom:'2px solid #000'}}></td>
+                        //     <td style={{borderBottom:'2px solid #000'}}></td>
+                        //     <td style={{borderBottom:'2px solid #000'}}></td>
+                        //     <td style={{borderBottom:'2px solid #000'}}></td>
+                        //     <td style={{borderBottom:'2px solid #000'}}>{data.count}</td>
+                        //   </tr>
+                        null
+                          }
+                    </>
                 ))}
 
                 <tr>
                   <td colSpan={8}>
                    <b> TOTAL WITH NOTES AND ALLERGIES</b>
                   </td>
-                  <td><b>{ReportData.allergic}</b></td>
+                  <td><b>{ReportData.total_dislike_allergies}</b></td>
                 </tr>
 
                 <tr>
@@ -110,7 +126,7 @@ const DashboardHome = () => {
                     <b>TOTAL ITEMS</b>
                   </td>
                   <td>
-                  <b>{ReportData.allergic + ReportData.normal}</b>
+                  <b>{ReportData.count}</b>
                   </td>
                 </tr>
 

@@ -3,6 +3,7 @@ import {
   SET_EMAIL_LOGS,
   SET_SMS_LOGS,
   SET_STATUS_DATA,
+  SET_REFRESH,
 } from '../actions/Types'
   
   const initialState = {
@@ -10,6 +11,7 @@ import {
     EmailLOGS: false,
     SMSLOGS: false,
     ALL_STATUS: false,
+    Refresh:false,
   };
   
   const homeReducer = (state = initialState, action) => {
@@ -28,6 +30,11 @@ import {
         return {
           ...state,
           SMSLOGS: action.payload,
+        };
+      case SET_REFRESH:
+        return {
+          ...state,
+          Refresh: action.payload,
         };
       case SET_STATUS_DATA:
         return {

@@ -10,7 +10,6 @@ const DataContainer = () => {
   return (
        <div className='DataContainer'>
            <ToastContainer/>
-           {/* <Loading/> */}
             <Routes>
                 <Route exact path='/' element={<DashboardHome />}/>
                 <Route exact path='/logs' element={<UserLogs />}/>
