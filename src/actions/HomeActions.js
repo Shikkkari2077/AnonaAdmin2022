@@ -89,8 +89,8 @@ export const GetMealsReport = (data) => (dispatch)=>{
     axios
       .get(Constant.getAPI() + `/productMaster/get-logs/email?date=${data}`)
       .then((res) => {
-           
-            if(res.data.length>0){
+           console.log('res.data.data',res.data.data)
+            if(res.data.data.length>0){
                 toast.success("Emails Fetched Successfully!", {
                   position: toast.POSITION.TOP_RIGHT
                 });
@@ -128,7 +128,7 @@ export const GetMealsReport = (data) => (dispatch)=>{
       .get(Constant.getAPI() + `/productMaster/get-logs/sms?date=${data}`)
       .then((res) => {
       
-            if(res.data.length>0){
+            if(res.data.data.length>0){
               toast.success("SMS Fetched Successfully!", {
                 position: toast.POSITION.TOP_RIGHT
               });
