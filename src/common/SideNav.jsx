@@ -22,10 +22,10 @@ const SideNav = () => {
     if(location.pathname.includes('/controlPanel')){
         setNavActive(3)
     }
-    if(location.pathname.includes('/sponsor')){
+    if(location.pathname.includes('/driverLogs')){
         setNavActive(4)
     }
-    if(location.pathname.includes('/lucky-draw')){
+    if(location.pathname.includes('/deliveryDetails')){
         setNavActive(5)
   }
   }, [navActive,location.pathname]);
@@ -49,6 +49,18 @@ const SideNav = () => {
         <Link  to="/controlPanel" className="navLink" onClick={()=>setNavActive(3)}>
           <li className={navActive==3?"Link LinkActive":"Link"}>
             <p><span class="material-icons-outlined">settings</span>Control Panel</p>
+          </li>
+        </Link>
+
+        <Link  to="/driverLogs" className="navLink" onClick={()=>setNavActive(4)}>
+          <li className={navActive==4?"Link LinkActive":"Link"}>
+            <p><span class="material-icons-outlined">local_shipping</span>Driver</p>
+          </li>
+        </Link>
+
+        <Link  to="/deliveryDetails" className="navLink" onClick={()=>setNavActive(5)}>
+          <li className={navActive==5?"Link LinkActive":"Link"}>
+            <p><span class="material-icons-outlined">delivery_dining</span>Delivery</p>
           </li>
         </Link>
 

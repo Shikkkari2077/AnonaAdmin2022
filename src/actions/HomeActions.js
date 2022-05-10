@@ -4,6 +4,8 @@ import {
   SET_SMS_LOGS,
   SET_STATUS_DATA,
   SET_REFRESH,
+  SET_DELIVERY_LOGS,
+  SET_DRIVER_LOGS,
 } from './Types'
 
 import Constant from '../Constant'
@@ -156,6 +158,82 @@ export const GetMealsReport = (data) => (dispatch)=>{
       });
   }
 
+  export const GetDRIVER_Logs = (data) => (dispatch)=>{
+    dispatch({
+      type:SET_REFRESH,
+      payload:true
+    })
+  
+      axios
+        .post(Constant.getAPI() + `/productionReport/driverLogs`,data)
+        .then((res) => {
+                  dispatch({
+                    type:SET_DRIVER_LOGS,
+                    payload:res.data.data
+                })
+              if(res.data.data.length>0){
+                  toast.success("Driver Logs Fetched Successfully!", {
+                    position: toast.POSITION.TOP_RIGHT
+                });
+          
+                  dispatch({
+                    type:SET_REFRESH,
+                    payload:false
+                  })
+              }else{
+                toast.error("No Records Found Sorry!", {
+                  position: toast.POSITION.TOP_RIGHT
+                });
+  
+                dispatch({
+                  type:SET_REFRESH,
+                  payload:false
+                })
+              }
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+    }
+
+    export const GetDELIVERY_Logs = (data) => (dispatch)=>{
+      dispatch({
+        type:SET_REFRESH,
+        payload:true
+      })
+    
+        axios
+          .post(Constant.getAPI() + `/productionReport/deliveryDetails`,data)
+          .then((res) => {
+                    dispatch({
+                      type:SET_DELIVERY_LOGS,
+                      payload:res.data.data
+                  })
+                if(res.data.data.length>0){
+                    toast.success("Delivery Details Fetched Successfully!", {
+                      position: toast.POSITION.TOP_RIGHT
+                  });
+            
+                    dispatch({
+                      type:SET_REFRESH,
+                      payload:false
+                    })
+                }else{
+                  toast.error("No Records Found Sorry!", {
+                    position: toast.POSITION.TOP_RIGHT
+                  });
+    
+                  dispatch({
+                    type:SET_REFRESH,
+                    payload:false
+                  })
+                }
+          })
+          .catch((err) => {
+            console.log(err.message);
+          });
+      }
+    
   export const GetALL_STATUS = (data) => (dispatch)=>{
 
     axios
