@@ -37,19 +37,7 @@ const DeliveryLogs = () => {
 
   const columns = [
     
-    {
-      name: "ORDER ID",
-      options: {
-        filter: true,
-        sort: true,
-        customHeadLabelRender:()=>{
-          return<span style={{
-            letterSpacing:'0',
-            fontWeight:'600'
-          }}>Order ID</span>
-        }
-      },
-    },
+   
     {
         name: "CUSTOMER NAME",
         options: {
@@ -60,6 +48,19 @@ const DeliveryLogs = () => {
               letterSpacing:'0',
               fontWeight:'600'
             }}>Customer Name</span>
+          }
+        },
+      },
+      {
+        name: "ORDER ID",
+        options: {
+          filter: true,
+          sort: true,
+          customHeadLabelRender:()=>{
+            return<span style={{
+              letterSpacing:'0',
+              fontWeight:'600'
+            }}>Order ID</span>
           }
         },
       },
@@ -77,6 +78,32 @@ const DeliveryLogs = () => {
       }
     },
     {
+      name: "DAY",
+      options: {
+        filter: true,
+        sort: true,
+        customHeadLabelRender:()=>{
+          return<span style={{
+            letterSpacing:'0',
+            fontWeight:'600'
+          }}>Day</span>
+        }
+      }
+    },
+    {
+      name: "STATUS",
+      options: {
+        filter: true,
+        sort: true,
+        customHeadLabelRender:()=>{
+          return<span style={{
+            letterSpacing:'0',
+            fontWeight:'600'
+          }}>Status</span>
+        }
+      }
+    },
+    {
         name: "TIME",
         options: {
           filter: true,
@@ -86,32 +113,6 @@ const DeliveryLogs = () => {
               letterSpacing:'0',
               fontWeight:'600'
             }}>Time</span>
-          }
-        }
-      },
-    {
-        name: "DAY",
-        options: {
-          filter: true,
-          sort: true,
-          customHeadLabelRender:()=>{
-            return<span style={{
-              letterSpacing:'0',
-              fontWeight:'600'
-            }}>Day</span>
-          }
-        }
-      },
-      {
-        name: "DELIVERY",
-        options: {
-          filter: true,
-          sort: true,
-          customHeadLabelRender:()=>{
-            return<span style={{
-              letterSpacing:'0',
-              fontWeight:'600'
-            }}>Delivery</span>
           }
         }
       },
@@ -129,7 +130,7 @@ const DeliveryLogs = () => {
         }
       },
       {
-        name: "STATUS",
+        name: "DELIVERY",
         options: {
           filter: true,
           sort: true,
@@ -137,10 +138,12 @@ const DeliveryLogs = () => {
             return<span style={{
               letterSpacing:'0',
               fontWeight:'600'
-            }}>Status</span>
+            }}>Delivery</span>
           }
         }
       },
+     
+      
      
       
     
